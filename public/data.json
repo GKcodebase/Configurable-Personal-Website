@@ -1,0 +1,216 @@
+{
+  "title": {
+    "isRequired": true,
+    "title": "Gokul G.K",
+    "size": "text-4xl",
+    "image": "/placeholder.svg?height=400&width=400"
+  },
+  "introduction": {
+    "isRequired": true,
+    "title": "About Me",
+    "size": "text-2xl",
+    "content": [
+      {
+        "paragraph": 1,
+        "text": "<p>Hi, I'm John Doe, a passionate Full Stack Developer & UI/UX Designer with experience in React, JavaScript, and Tailwind CSS. I enjoy building responsive and user-friendly web applications.</p>"
+      },
+      {
+        "paragraph": 2,
+        "text": "<p>I have a strong background in frontend development and a keen interest in modern web technologies.</p>"
+      }
+    ]
+  },
+  "education": {
+    "isRequired": true,
+    "title": "Education",
+    "size": "text-2xl",
+    "items": [
+      {
+        "institution": "University of Technology",
+        "degree": "B.S. Computer Science",
+        "timePeriod": {
+          "start": 2018,
+          "end": 2022
+        },
+        "gpa": 3.8,
+        "activities": ["Coding Club", "Robotics Club", "Open Source Projects"],
+        "achievements": ["Dean's List 2020", "Hackathon Winner 2021", "Best Thesis Award 2022"]
+      },
+      {
+        "institution": "Tech Bootcamp",
+        "degree": "Full Stack Web Development",
+        "timePeriod": {
+          "start": 2022,
+          "end": 2022
+        },
+        "activities": ["Team Projects", "Hackathons"],
+        "achievements": ["Best Project Award"]
+      }
+    ]
+  },
+  "workExperience": {
+    "isRequired": true,
+    "title": "Work Experience",
+    "size": "text-2xl",
+    "items": [
+      {
+        "company": "TechCorp Inc.",
+        "role": "Senior Frontend Developer",
+        "timePeriod": {
+          "start": 2022,
+          "end": null
+        },
+        "location": "San Francisco, CA",
+        "points": [
+          "Led the frontend development team in building responsive web applications",
+          "Implemented modern frontend practices and improved performance by 40%",
+          "Collaborated with designers to implement responsive UI components"
+        ]
+      },
+      {
+        "company": "WebSolutions",
+        "role": "Full Stack Developer",
+        "timePeriod": {
+          "start": 2020,
+          "end": 2022
+        },
+        "location": "New York, NY",
+        "points": [
+          "Developed and maintained full-stack applications using React, Node.js, and MongoDB",
+          "Collaborated with designers to implement responsive UI components",
+          "Participated in code reviews and mentored junior developers"
+        ]
+      },
+      {
+        "company": "DigitalCraft",
+        "role": "Junior Web Developer",
+        "timePeriod": {
+          "start": 2018,
+          "end": 2020
+        },
+        "location": "Boston, MA",
+        "points": [
+          "Built and maintained client websites using HTML, CSS, and JavaScript",
+          "Assisted in the development of e-commerce platforms",
+          "Worked with a team of designers and developers to deliver projects on time"
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "isRequired": true,
+    "title": "Projects",
+    "size": "text-2xl",
+    "items": [
+      {
+        "title": "E-commerce Platform",
+        "photo": "/placeholder.svg?height=300&width=500",
+        "links": {
+          "github": "https://github.com",
+          "demo": "https://example.com"
+        },
+        "description": "A full-stack e-commerce platform built with Next.js, Stripe, and a headless CMS.",
+        "technologies": ["Next.js", "Stripe", "Tailwind CSS", "Headless CMS"]
+      },
+      {
+        "title": "Task Management App",
+        "photo": "/placeholder.svg?height=300&width=500",
+        "links": {
+          "github": "https://github.com",
+          "demo": "https://example.com"
+        },
+        "description": "A collaborative task management application with real-time updates and team features.",
+        "technologies": ["React", "Firebase", "Material UI", "Real-time"]
+      },
+      {
+        "title": "Portfolio Website",
+        "photo": "/placeholder.svg?height=300&width=500",
+        "links": {
+          "github": "https://github.com",
+          "demo": "https://example.com"
+        },
+        "description": "A responsive portfolio website built with modern web technologies.",
+        "technologies": ["Next.js", "Tailwind CSS", "Framer Motion", "Responsive"]
+      }
+    ]
+  },
+  "skills": {
+    "isRequired": true,
+    "title": "Skills",
+    "size": "text-2xl",
+    "categories": {
+      "frontend": [
+        { "name": "React", "icon": "react" },
+        { "name": "JavaScript", "icon": "javascript" },
+        { "name": "Tailwind CSS", "icon": "tailwindcss" },
+        { "name": "HTML5", "icon": "html5" },
+        { "name": "CSS3", "icon": "css3" }
+      ],
+      "backend": [
+        { "name": "Node.js", "icon": "nodedotjs" },
+        { "name": "Express", "icon": "express" },
+        { "name": "MongoDB", "icon": "mongodb" }
+      ],
+      "design": [
+        { "name": "Figma", "icon": "figma" },
+        { "name": "Adobe XD", "icon": "adobexd" },
+        { "name": "UI/UX Design", "icon": null }
+      ],
+      "tools": [
+        { "name": "Git", "icon": "git" },
+        { "name": "Docker", "icon": "docker" },
+        { "name": "VS Code", "icon": "visualstudiocode" }
+      ]
+    }
+  },
+  "certifications": {
+    "isRequired": false,
+    "title": "Certifications",
+    "size": "text-2xl",
+    "items": [
+      {
+        "name": "UI/UX Design Certification",
+        "picture": "/placeholder.svg?height=200&width=300",
+        "provider": "Design Institute",
+        "description": "Certified in UI/UX design principles and practices.",
+        "date": "2023"
+      },
+      {
+        "name": "Full Stack Web Development Bootcamp",
+        "picture": "/placeholder.svg?height=200&width=300",
+        "provider": "Tech Bootcamp",
+        "description": "Intensive training in full-stack web development.",
+        "date": "2022"
+      }
+    ]
+  },
+  "contacts": {
+    "isRequired": true,
+    "title": "Contact Me",
+    "size": "text-2xl",
+    "details": {
+      "email": "john.doe@example.com",
+      "phone": "+1 234 567 890",
+      "linkedin": "https://linkedin.com",
+      "github": "https://github.com",
+      "twitter": "https://twitter.com"
+    }
+  },
+  "testimonials": {
+    "isRequired": false,
+    "title": "Testimonials",
+    "size": "text-2xl",
+    "items": [
+      {
+        "quote": "John is an exceptional developer with great skills.",
+        "author": "Jane Smith",
+        "position": "CEO, Tech Corp"
+      },
+      {
+        "quote": "Working with John was a pleasure; he delivered high-quality work on time.",
+        "author": "Mike Johnson",
+        "position": "CTO, Innovate Solutions"
+      }
+    ]
+  }
+}
