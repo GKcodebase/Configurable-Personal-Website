@@ -151,12 +151,12 @@ interface EditContextType {
 const defaultPortfolioData: PortfolioData = {
   title: {
     isRequired: true,
-    title: "John Doe",
+    title: "Gokul G.K",
     size: "text-4xl",
     image: "/placeholder.svg?height=400&width=400",
-    subtitle: "Full Stack Developer & UI/UX Designer",
+    subtitle: "Full Stack Developer & Project Manager",
     description:
-      "I build exceptional digital experiences that are fast, accessible, and visually appealing. Currently focused on building responsive web applications.",
+      "I build exceptional digital experiences that are fast, accessible, and visually appealing. Currently focused on building responsive applications.",
     socialLinks: {
       github: "https://github.com",
       linkedin: "https://linkedin.com",
@@ -170,7 +170,7 @@ const defaultPortfolioData: PortfolioData = {
     content: [
       {
         paragraph: 1,
-        text: "<p>Hi, I'm John Doe, a passionate Full Stack Developer & UI/UX Designer with experience in React, JavaScript, and Tailwind CSS. I enjoy building responsive and user-friendly web applications.</p>",
+        text: "<p>Hi, I'm Gokul G.K, a passionate Full Stack Developer Product Manager with experience in React, JavaScript, and Tailwind CSS. I enjoy building responsive and user-friendly web applications.</p>",
       },
       {
         paragraph: 2,
@@ -180,6 +180,11 @@ const defaultPortfolioData: PortfolioData = {
     journey:
       "I started my journey as a self-taught developer, learning HTML, CSS, and JavaScript. Over the years, I've expanded my skills to include modern frameworks like React, Next.js, and various backend technologies. I'm passionate about creating accessible, performant, and beautiful web applications.",
     education: [
+      {
+        degree: "M.S. in IT Management",
+        institution: "University of Technology",
+        period: "2018-2022",
+      },
       {
         degree: "B.S. in Computer Science",
         institution: "University of Technology",

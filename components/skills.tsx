@@ -12,6 +12,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Icon } from "@iconify/react"
 
 interface SkillsProps {
   data: {
@@ -43,14 +44,25 @@ export default function Skills({ data, className = "" }: SkillsProps) {
   const getIconComponent = (iconName: string | null) => {
     if (!iconName) return null
 
-    // Convert icon name to match SimpleIcons naming convention
-    // e.g., "react" -> "SiReact"
-    const iconKey = `Si${iconName.charAt(0).toUpperCase() + iconName.slice(1)}` as keyof typeof SimpleIcons
+    // Check if it's an Iconify icon (contains :)
+    if (iconName.includes(":")) {
+      return <Icon icon={iconName} className="h-10 w-10" style={{ fontSize: "40px" }} />
+    }
 
-    // @ts-ignore - Dynamic access to SimpleIcons
-    const IconComponent = SimpleIcons[iconKey]
+    // Try to use a colorful Iconify version first
+    try {
+      return <Icon icon={`logos:${iconName}`} className="h-10 w-10" style={{ fontSize: "40px" }} />
+    } catch (e) {
+      // Fallback to SimpleIcons for backward compatibility
+      // Convert icon name to match SimpleIcons naming convention
+      // e.g., "react" -> "SiReact"
+      const iconKey = `Si${iconName.charAt(0).toUpperCase() + iconName.slice(1)}` as keyof typeof SimpleIcons
 
-    return IconComponent ? <IconComponent className="h-6 w-6" /> : null
+      // @ts-ignore - Dynamic access to SimpleIcons
+      const IconComponent = SimpleIcons[iconKey]
+
+      return IconComponent ? <IconComponent className="h-10 w-10" /> : null
+    }
   }
 
   const handleTitleChange = (newTitle: string) => {
@@ -95,13 +107,15 @@ export default function Skills({ data, className = "" }: SkillsProps) {
   }
 
   const handleSaveSkill = () => {
+    const newSkill = {
+      name: skillForm.name,
+      icon: skillForm.icon || null,
+    }
+
     if (editingSkill) {
       // Edit existing skill
       const updatedCategories = { ...data.categories }
-      updatedCategories[editingSkill.category][editingSkill.index] = {
-        name: skillForm.name,
-        icon: skillForm.icon || null,
-      }
+      updatedCategories[editingSkill.category][editingSkill.index] = newSkill
 
       updateSection("skills", {
         ...data,
@@ -117,10 +131,7 @@ export default function Skills({ data, className = "" }: SkillsProps) {
         updatedCategories[skillForm.category] = []
       }
 
-      updatedCategories[skillForm.category].push({
-        name: skillForm.name,
-        icon: skillForm.icon || null,
-      })
+      updatedCategories[skillForm.category].push(newSkill)
 
       updateSection("skills", {
         ...data,
@@ -229,8 +240,26 @@ export default function Skills({ data, className = "" }: SkillsProps) {
               {skills.map((skill, index) => (
                 <Card key={index} className="overflow-hidden group">
                   <CardContent className="p-4 flex flex-col items-center text-center relative">
-                    <div className="mb-2 h-10 flex items-center justify-center">
-                      {skill.icon ? getIconComponent(skill.icon) : null}
+                    <div className="mb-3 h-14 flex items-center justify-center">
+                      {skill.icon ? (
+                        skill.icon.includes(":") ? (
+                          getIconComponent(skill.icon)
+                        ) : (
+                          <Icon
+                            icon={`logos:${skill.icon}`}
+                            className="h-10 w-10"
+                            style={{ fontSize: "40px" }}
+                            onError={() => {
+                              // Fallback to SimpleIcons if Iconify icon doesn't exist
+                              const IconComponent =
+                                SimpleIcons[
+                                  `Si${skill.icon.charAt(0).toUpperCase() + skill.icon.slice(1)}` as keyof typeof SimpleIcons
+                                ]
+                              return IconComponent ? <IconComponent className="h-10 w-10" /> : null
+                            }}
+                          />
+                        )
+                      ) : null}
                     </div>
                     <EditableText
                       value={skill.name}
@@ -246,7 +275,7 @@ export default function Skills({ data, className = "" }: SkillsProps) {
                           categories: updatedCategories,
                         })
                       }}
-                      className="font-medium"
+                      className="font-medium min-h-[40px] leading-tight"
                       as="p"
                     />
 
@@ -304,15 +333,60 @@ export default function Skills({ data, className = "" }: SkillsProps) {
                 />
               </div>
               <div>
-                <Label htmlFor="icon">Icon (optional)</Label>
-                <Input
-                  id="icon"
-                  value={skillForm.icon}
-                  onChange={(e) => setSkillForm({ ...skillForm, icon: e.target.value })}
-                  placeholder="react"
-                />
+                <Label htmlFor="icon">Icon</Label>
+                <div className="relative">
+                  <Input
+                    id="icon"
+                    value={skillForm.icon || ""}
+                    onChange={(e) => setSkillForm({ ...skillForm, icon: e.target.value })}
+                    placeholder="Search icons (e.g., 'logos:react' or 'vscode-icons:file-type-js')"
+                    className="pr-8"
+                  />
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                    {skillForm.icon && getIconComponent(skillForm.icon)}
+                  </div>
+                </div>
+                <div className="mt-2 flex flex-wrap gap-2 max-h-32 overflow-y-auto p-2 border rounded-md">
+                  {[
+                    "logos:react",
+                    "logos:javascript",
+                    "logos:typescript",
+                    "logos:nodejs",
+                    "logos:python",
+                    "logos:vue",
+                    "logos:angular",
+                    "logos:svelte",
+                    "logos:nextjs",
+                    "logos:tailwindcss",
+                    "logos:css-3",
+                    "logos:html-5",
+                    "vscode-icons:file-type-js",
+                    "vscode-icons:file-type-typescript",
+                    "vscode-icons:file-type-reactjs",
+                    "vscode-icons:file-type-node",
+                    "vscode-icons:file-type-css",
+                    "vscode-icons:file-type-html",
+                  ].map((iconName) => (
+                    <button
+                      key={iconName}
+                      type="button"
+                      className={`p-2 border rounded-md hover:bg-primary/10 ${skillForm.icon === iconName ? "border-primary bg-primary/5" : "border-border"}`}
+                      onClick={() => setSkillForm({ ...skillForm, icon: iconName })}
+                      title={iconName}
+                    >
+                      {getIconComponent(iconName)}
+                    </button>
+                  ))}
+                  <button
+                    type="button"
+                    className="p-2 border rounded-md hover:bg-primary/10 text-xs text-muted-foreground"
+                    onClick={() => window.open("https://icon-sets.iconify.design/", "_blank")}
+                  >
+                    Browse more...
+                  </button>
+                </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Enter the icon name from Simple Icons (e.g., "react" for React)
+                  Enter an Iconify icon name (e.g., 'logos:react') or a SimpleIcon name (e.g., 'react')
                 </p>
               </div>
               <div>

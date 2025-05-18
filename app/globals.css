@@ -370,3 +370,19 @@
   outline: 2px dashed hsl(var(--primary));
   outline-offset: 2px;
 }
+
+/* Force theme application for production */
+:root[class*="theme-"] {
+  --forced-theme-applied: true;
+}
+
+/* Ensure theme transitions are smooth */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Ensure theme variables are applied with higher specificity */
+:root.dark[class*="theme-"],
+:root:not(.dark)[class*="theme-"] {
+  color-scheme: light dark;
+}

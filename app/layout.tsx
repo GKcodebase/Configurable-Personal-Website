@@ -24,11 +24,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <NextThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <NextThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+          forcedTheme={undefined} // Ensure no forced theme
+        >
           <ThemeProvider>
             <EditProvider>
-              <Header />
-              {children}
+              <div className="theme-application-wrapper">
+                <Header />
+                {children}
+              </div>
             </EditProvider>
           </ThemeProvider>
         </NextThemeProvider>

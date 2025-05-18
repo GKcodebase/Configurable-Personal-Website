@@ -73,6 +73,9 @@ export default function AwardsCertifications({ data, className = "" }: AwardsCer
     const updatedData = {
       ...data,
       title: newTitle,
+      awards: data.awards || [],
+      certifications: data.certifications || [],
+      blogs: data.blogs || [],
     }
     updateSection("awardsCertifications", updatedData)
   }
@@ -334,10 +337,22 @@ export default function AwardsCertifications({ data, className = "" }: AwardsCer
               <TabsTrigger value="blogs">Blogs</TabsTrigger>
             </TabsList>
 
-            {isEditMode && (
-              <Button variant="outline" size="sm" onClick={() => handleAddItem(activeTab as any)}>
+            {isEditMode && activeTab == "awards"  &&(
+              <Button variant="outline" size="sm" onClick={() => handleAddItem( "award")}>
                 <Plus className="h-4 w-4 mr-2" />
-                Add {activeTab === "awards" ? "Award" : activeTab === "certifications" ? "Certification" : "Blog"}
+                Add Award
+              </Button>
+            )}
+            {isEditMode && activeTab == "certifications"  &&(
+              <Button variant="outline" size="sm" onClick={() => handleAddItem( "certification")}>
+                <Plus className="h-4 w-4 mr-2" />
+                Add Certification
+              </Button>
+            )}
+                        {isEditMode && activeTab == "blogs"  &&(
+              <Button variant="outline" size="sm" onClick={() => handleAddItem( "blog")}>
+                <Plus className="h-4 w-4 mr-2" />
+                Add Blog
               </Button>
             )}
           </div>

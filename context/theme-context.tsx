@@ -147,69 +147,78 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     setNextTheme(isDarkMode ? "light" : "dark")
   }
 
-  // Apply theme classes and custom properties to body
   useEffect(() => {
+    // Ensure this effect only runs in the browser
+    if (typeof window === "undefined") return
+
     const body = document.body
     const root = document.documentElement
 
-    // Remove all theme classes
-    body.classList.remove(
-      "theme-netflix",
-      "theme-youtube",
-      "theme-spotify",
-      "theme-snapchat",
-      "theme-steam",
-      "theme-uber",
-      "theme-tiktok",
-      "theme-beach",
-      "theme-mountain",
-      "theme-rainforest",
-      "theme-custom",
-    )
+    // Force a small delay to ensure DOM is ready
+    const applyTheme = () => {
+      console.log("Applying theme:", settings.theme)
 
-    // Add current theme class
-    body.classList.add(`theme-${settings.theme}`)
+      // Remove all theme classes
+      body.classList.remove(
+        "theme-netflix",
+        "theme-youtube",
+        "theme-spotify",
+        "theme-snapchat",
+        "theme-steam",
+        "theme-uber",
+        "theme-tiktok",
+        "theme-beach",
+        "theme-mountain",
+        "theme-rainforest",
+        "theme-custom",
+      )
 
-    // Apply font family
-    body.classList.remove("font-inter", "font-roboto", "font-poppins", "font-openSans", "font-lato")
-    body.classList.add(`font-${settings.fontFamily}`)
+      // Add current theme class
+      body.classList.add(`theme-${settings.theme}`)
 
-    // Apply font size
-    body.classList.remove("text-sm", "text-base", "text-lg", "text-xl")
-    body.classList.add(`text-${settings.fontSize}`)
+      // Apply font family
+      body.classList.remove("font-inter", "font-roboto", "font-poppins", "font-openSans", "font-lato")
+      body.classList.add(`font-${settings.fontFamily}`)
 
-    const { theme, fontFamily, fontSize, primaryColor, secondaryColor } = settings
+      // Apply font size
+      body.classList.remove("text-sm", "text-base", "text-lg", "text-xl")
+      body.classList.add(`text-${settings.fontSize}`)
 
-    // Apply custom colors if using custom theme
-    if (theme === "custom") {
-      // Convert hex to hsl for CSS variables
-      const primaryHsl = hexToHsl(primaryColor)
-      const secondaryHsl = hexToHsl(secondaryColor)
+      const { theme, primaryColor, secondaryColor } = settings
 
-      if (primaryHsl) {
-        root.style.setProperty("--primary", primaryHsl)
-        // Set a contrasting foreground color
-        const isDarkPrimary = isColorDark(primaryColor)
-        root.style.setProperty("--primary-foreground", isDarkPrimary ? "0 0% 100%" : "0 0% 0%")
+      // Apply custom colors if using custom theme
+      if (theme === "custom") {
+        // Convert hex to hsl for CSS variables
+        const primaryHsl = hexToHsl(primaryColor)
+        const secondaryHsl = hexToHsl(secondaryColor)
+
+        if (primaryHsl) {
+          root.style.setProperty("--primary", primaryHsl)
+          // Set a contrasting foreground color
+          const isDarkPrimary = isColorDark(primaryColor)
+          root.style.setProperty("--primary-foreground", isDarkPrimary ? "0 0% 100%" : "0 0% 0%")
+        }
+
+        if (secondaryHsl) {
+          root.style.setProperty("--secondary", secondaryHsl)
+          root.style.setProperty("--accent", secondaryHsl)
+          // Set a contrasting foreground color
+          const isDarkSecondary = isColorDark(secondaryColor)
+          root.style.setProperty("--secondary-foreground", isDarkSecondary ? "0 0% 100%" : "0 0% 0%")
+          root.style.setProperty("--accent-foreground", isDarkSecondary ? "0 0% 100%" : "0 0% 0%")
+        }
+      } else {
+        // For predefined themes, we need to apply CSS variables directly based on the theme
+        // This ensures the theme is applied correctly in production
+        applyPredefinedThemeVariables(theme, root)
       }
-
-      if (secondaryHsl) {
-        root.style.setProperty("--secondary", secondaryHsl)
-        root.style.setProperty("--accent", secondaryHsl)
-        // Set a contrasting foreground color
-        const isDarkSecondary = isColorDark(secondaryColor)
-        root.style.setProperty("--secondary-foreground", isDarkSecondary ? "0 0% 100%" : "0 0% 0%")
-        root.style.setProperty("--accent-foreground", isDarkSecondary ? "0 0% 100%" : "0 0% 0%")
-      }
-    } else {
-      // Reset custom color properties when using predefined themes
-      root.style.removeProperty("--primary")
-      root.style.removeProperty("--primary-foreground")
-      root.style.removeProperty("--secondary")
-      root.style.removeProperty("--secondary-foreground")
-      root.style.removeProperty("--accent")
-      root.style.removeProperty("--accent-foreground")
     }
+
+    // Apply theme immediately and after a short delay to ensure it takes effect
+    applyTheme()
+    const timeoutId = setTimeout(applyTheme, 100)
+
+    return () => clearTimeout(timeoutId)
   }, [
     settings.theme,
     settings.fontFamily,
@@ -218,6 +227,102 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     settings.secondaryColor,
     isDarkMode,
   ])
+
+  // Function to apply predefined theme variables directly
+  const applyPredefinedThemeVariables = (theme: ThemeType, root: HTMLElement) => {
+    // Reset any custom theme variables first
+    root.style.removeProperty("--primary")
+    root.style.removeProperty("--primary-foreground")
+    root.style.removeProperty("--secondary")
+    root.style.removeProperty("--secondary-foreground")
+    root.style.removeProperty("--accent")
+    root.style.removeProperty("--accent-foreground")
+
+    // Apply theme-specific variables
+    switch (theme) {
+      case "netflix":
+        root.style.setProperty("--primary", "0 100% 50%")
+        root.style.setProperty("--primary-foreground", "0 0% 100%")
+        root.style.setProperty("--secondary", "220 13% 23%")
+        root.style.setProperty("--secondary-foreground", "0 0% 100%")
+        root.style.setProperty("--accent", "0 100% 50%")
+        root.style.setProperty("--accent-foreground", "0 0% 100%")
+        break
+      case "youtube":
+        root.style.setProperty("--primary", "0 100% 50%")
+        root.style.setProperty("--primary-foreground", "0 0% 100%")
+        root.style.setProperty("--secondary", "0 0% 95%")
+        root.style.setProperty("--secondary-foreground", "0 0% 0%")
+        root.style.setProperty("--accent", "0 100% 50%")
+        root.style.setProperty("--accent-foreground", "0 0% 100%")
+        break
+      case "spotify":
+        root.style.setProperty("--primary", "120 100% 50%")
+        root.style.setProperty("--primary-foreground", "0 0% 0%")
+        root.style.setProperty("--secondary", "160 100% 20%")
+        root.style.setProperty("--secondary-foreground", "0 0% 100%")
+        root.style.setProperty("--accent", "120 100% 50%")
+        root.style.setProperty("--accent-foreground", "0 0% 0%")
+        break
+      case "snapchat":
+        root.style.setProperty("--primary", "60 100% 50%")
+        root.style.setProperty("--primary-foreground", "0 0% 0%")
+        root.style.setProperty("--secondary", "0 0% 0%")
+        root.style.setProperty("--secondary-foreground", "60 100% 50%")
+        root.style.setProperty("--accent", "0 0% 0%")
+        root.style.setProperty("--accent-foreground", "60 100% 50%")
+        break
+      case "steam":
+        root.style.setProperty("--primary", "200 100% 50%")
+        root.style.setProperty("--primary-foreground", "0 0% 100%")
+        root.style.setProperty("--secondary", "210 100% 20%")
+        root.style.setProperty("--secondary-foreground", "0 0% 100%")
+        root.style.setProperty("--accent", "200 100% 50%")
+        root.style.setProperty("--accent-foreground", "0 0% 100%")
+        break
+      case "uber":
+        root.style.setProperty("--primary", "0 0% 100%")
+        root.style.setProperty("--primary-foreground", "0 0% 0%")
+        root.style.setProperty("--secondary", "0 0% 15%")
+        root.style.setProperty("--secondary-foreground", "0 0% 100%")
+        root.style.setProperty("--accent", "0 0% 100%")
+        root.style.setProperty("--accent-foreground", "0 0% 0%")
+        break
+      case "tiktok":
+        root.style.setProperty("--primary", "326 100% 60%")
+        root.style.setProperty("--primary-foreground", "0 0% 100%")
+        root.style.setProperty("--secondary", "196 100% 50%")
+        root.style.setProperty("--secondary-foreground", "0 0% 100%")
+        root.style.setProperty("--accent", "196 100% 50%")
+        root.style.setProperty("--accent-foreground", "0 0% 100%")
+        break
+      case "beach":
+        root.style.setProperty("--primary", "200 100% 45%")
+        root.style.setProperty("--primary-foreground", "0 0% 100%")
+        root.style.setProperty("--secondary", "40 100% 80%")
+        root.style.setProperty("--secondary-foreground", "25 100% 25%")
+        root.style.setProperty("--accent", "25 100% 60%")
+        root.style.setProperty("--accent-foreground", "0 0% 100%")
+        break
+      case "mountain":
+        root.style.setProperty("--primary", "210 50% 40%")
+        root.style.setProperty("--primary-foreground", "0 0% 100%")
+        root.style.setProperty("--secondary", "210 30% 70%")
+        root.style.setProperty("--secondary-foreground", "210 50% 10%")
+        root.style.setProperty("--accent", "210 50% 60%")
+        root.style.setProperty("--accent-foreground", "0 0% 100%")
+        break
+      case "rainforest":
+        root.style.setProperty("--primary", "120 50% 30%")
+        root.style.setProperty("--primary-foreground", "0 0% 100%")
+        root.style.setProperty("--secondary", "80 70% 60%")
+        root.style.setProperty("--secondary-foreground", "120 50% 10%")
+        root.style.setProperty("--accent", "40 100% 50%")
+        root.style.setProperty("--accent-foreground", "0 0% 100%")
+        break
+      // Default case is handled by the CSS variables in globals.css
+    }
+  }
 
   return (
     <ThemeContext.Provider

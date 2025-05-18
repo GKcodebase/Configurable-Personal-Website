@@ -14,7 +14,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const isMobile = useMobile()
   const { isDarkMode } = useThemeContext()
-  const { isEditMode, toggleEditMode, isDevMode } = useEditContext()
+  const { isEditMode, toggleEditMode, isDevMode, portfolioData } = useEditContext()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,6 +41,13 @@ export default function Header() {
     { name: "Contact", href: "#contact" },
   ]
 
+  // Update document title based on portfolio data
+  useEffect(() => {
+    if (portfolioData?.title?.title) {
+      document.title = `${portfolioData.title.title} - Portfolio`
+    }
+  }, [portfolioData?.title?.title])
+
   return (
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-200 ${
@@ -49,7 +56,7 @@ export default function Header() {
     >
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
         <Link href="#" className="flex items-center gap-2">
-          <span className="text-xl font-bold">John Doe</span>
+          <span className="text-xl font-bold">{portfolioData?.title?.title || "Home"}</span>
         </Link>
 
         {/* Desktop Navigation */}
