@@ -44,6 +44,7 @@ export default function Header() {
   // Update document title based on portfolio data
   useEffect(() => {
     if (portfolioData?.title?.title) {
+      // Update document title to reflect the portfolio title
       document.title = `${portfolioData.title.title} - Portfolio`
     }
   }, [portfolioData?.title?.title])

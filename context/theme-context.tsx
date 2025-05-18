@@ -154,7 +154,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     const body = document.body
     const root = document.documentElement
 
-    // Force a small delay to ensure DOM is ready
+    // Apply theme immediately
     const applyTheme = () => {
       console.log("Applying theme:", settings.theme)
 
@@ -184,34 +184,34 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       body.classList.remove("text-sm", "text-base", "text-lg", "text-xl")
       body.classList.add(`text-${settings.fontSize}`)
 
-      const { theme, primaryColor, secondaryColor } = settings
-
-      // Apply custom colors if using custom theme
-      if (theme === "custom") {
+      // Apply theme-specific CSS variables directly to :root
+      if (settings.theme === "custom") {
         // Convert hex to hsl for CSS variables
-        const primaryHsl = hexToHsl(primaryColor)
-        const secondaryHsl = hexToHsl(secondaryColor)
+        const primaryHsl = hexToHsl(settings.primaryColor)
+        const secondaryHsl = hexToHsl(settings.secondaryColor)
 
         if (primaryHsl) {
           root.style.setProperty("--primary", primaryHsl)
-          // Set a contrasting foreground color
-          const isDarkPrimary = isColorDark(primaryColor)
+          const isDarkPrimary = isColorDark(settings.primaryColor)
           root.style.setProperty("--primary-foreground", isDarkPrimary ? "0 0% 100%" : "0 0% 0%")
         }
 
         if (secondaryHsl) {
           root.style.setProperty("--secondary", secondaryHsl)
           root.style.setProperty("--accent", secondaryHsl)
-          // Set a contrasting foreground color
-          const isDarkSecondary = isColorDark(secondaryColor)
+          const isDarkSecondary = isColorDark(settings.secondaryColor)
           root.style.setProperty("--secondary-foreground", isDarkSecondary ? "0 0% 100%" : "0 0% 0%")
           root.style.setProperty("--accent-foreground", isDarkSecondary ? "0 0% 100%" : "0 0% 0%")
         }
       } else {
-        // For predefined themes, we need to apply CSS variables directly based on the theme
-        // This ensures the theme is applied correctly in production
-        applyPredefinedThemeVariables(theme, root)
+        // For predefined themes, apply CSS variables directly
+        applyPredefinedThemeVariables(settings.theme, root)
       }
+
+      // Force a repaint to ensure theme changes are applied
+      document.body.style.display = "none"
+      document.body.offsetHeight // Force a reflow
+      document.body.style.display = ""
     }
 
     // Apply theme immediately and after a short delay to ensure it takes effect

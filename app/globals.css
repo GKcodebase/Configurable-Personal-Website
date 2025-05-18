@@ -386,3 +386,37 @@ body {
 :root:not(.dark)[class*="theme-"] {
   color-scheme: light dark;
 }
+
+/* Add this to the end of the file to ensure theme styles are applied with higher specificity */
+
+/* Force theme application */
+html[class*="theme-"] body,
+body[class*="theme-"] {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Ensure theme variables are applied with higher specificity */
+:root[class*="theme-"],
+html[class*="theme-"] {
+  color-scheme: light dark;
+}
+
+/* Theme-specific styles with !important to override any conflicting styles */
+.theme-netflix {
+  --background: 220 13% 13% !important;
+  --foreground: 0 0% 100% !important;
+  --card: 220 13% 18% !important;
+  --card-foreground: 0 0% 100% !important;
+  --primary: 0 100% 50% !important;
+  --primary-foreground: 0 0% 100% !important;
+  --secondary: 220 13% 23% !important;
+  --secondary-foreground: 0 0% 100% !important;
+  --muted: 220 13% 23% !important;
+  --muted-foreground: 0 0% 70% !important;
+  --accent: 0 100% 50% !important;
+  --accent-foreground: 0 0% 100% !important;
+  --border: 220 13% 23% !important;
+  --input: 220 13% 23% !important;
+}
+
+/* Add similar !important rules for other themes */

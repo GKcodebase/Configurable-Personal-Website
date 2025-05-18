@@ -10,9 +10,8 @@ import Header from "@/components/header"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "John Doe - Full Stack Developer & UI/UX Designer",
-  description:
-    "Personal portfolio website of John Doe, a Full Stack Developer and UI/UX Designer based in San Francisco.",
+  title: "Portfolio Website",
+  description: "Personal portfolio website showcasing skills, projects, and experience.",
     generator: 'v0.dev'
 }
 
@@ -24,13 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <NextThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-          forcedTheme={undefined} // Ensure no forced theme
-        >
+        <NextThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <ThemeProvider>
             <EditProvider>
               <div className="theme-application-wrapper">
