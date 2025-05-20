@@ -1,6 +1,6 @@
 import type { ReactNode } from "react"
 import { useThemeContext } from "@/context/theme-context"
-import { Icon } from "@iconify/react" // We'll need to install this package
+import { Icon } from "@iconify/react"
 
 interface SectionWrapperProps {
   id?: string
@@ -15,7 +15,7 @@ export default function SectionWrapper({
   id,
   children,
   className = "",
-  bgColor = "bg-white dark:bg-slate-950",
+  bgColor = "bg-background dark:bg-background", // Changed to use CSS variables
   icon,
   iconColor,
 }: SectionWrapperProps) {
@@ -25,7 +25,7 @@ export default function SectionWrapper({
   const sectionClasses = `${bgColor} px-${padding} py-${padding} md:py-${Number.parseInt(padding) * 2} m-${margin} ${className}`
 
   return (
-    <section id={id} className={sectionClasses}>
+    <section id={id} className={sectionClasses} style={{ backgroundColor: "hsl(var(--background))" }}>
       <div className="container relative">
         {icon && (
           <div className="absolute top-0 right-0 -mt-6 mr-6">

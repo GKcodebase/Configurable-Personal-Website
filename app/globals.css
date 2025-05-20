@@ -70,182 +70,182 @@
 
   /* Theme: Netflix */
   .theme-netflix {
-    --background: 220 13% 13%;
-    --foreground: 0 0% 100%;
-    --card: 220 13% 18%;
-    --card-foreground: 0 0% 100%;
-    --primary: 0 100% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 220 13% 23%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 220 13% 23%;
-    --muted-foreground: 0 0% 70%;
-    --accent: 0 100% 50%;
-    --accent-foreground: 0 0% 100%;
-    --border: 220 13% 23%;
-    --input: 220 13% 23%;
+    --background: 220 13% 13% !important;
+    --foreground: 0 0% 100% !important;
+    --card: 220 13% 18% !important;
+    --card-foreground: 0 0% 100% !important;
+    --primary: 0 100% 50% !important;
+    --primary-foreground: 0 0% 100% !important;
+    --secondary: 220 13% 23% !important;
+    --secondary-foreground: 0 0% 100% !important;
+    --muted: 220 13% 23% !important;
+    --muted-foreground: 0 0% 70% !important;
+    --accent: 0 100% 50% !important;
+    --accent-foreground: 0 0% 100% !important;
+    --border: 220 13% 23% !important;
+    --input: 220 13% 23% !important;
   }
 
   /* Theme: YouTube */
   .theme-youtube {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
-    --card: 0 0% 98%;
-    --card-foreground: 0 0% 0%;
-    --primary: 0 100% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 95%;
-    --secondary-foreground: 0 0% 0%;
-    --muted: 0 0% 95%;
-    --muted-foreground: 0 0% 40%;
-    --accent: 0 100% 50%;
-    --accent-foreground: 0 0% 100%;
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
+    --background: 0 0% 100% !important;
+    --foreground: 0 0% 0% !important;
+    --card: 0 0% 98% !important;
+    --card-foreground: 0 0% 0% !important;
+    --primary: 0 100% 50% !important;
+    --primary-foreground: 0 0% 100% !important;
+    --secondary: 0 0% 95% !important;
+    --secondary-foreground: 0 0% 0% !important;
+    --muted: 0 0% 95% !important;
+    --muted-foreground: 0 0% 40% !important;
+    --accent: 0 100% 50% !important;
+    --accent-foreground: 0 0% 100% !important;
+    --border: 0 0% 90% !important;
+    --input: 0 0% 90% !important;
   }
 
   /* Theme: Spotify */
   .theme-spotify {
-    --background: 160 100% 10%;
-    --foreground: 0 0% 100%;
-    --card: 160 100% 14%;
-    --card-foreground: 0 0% 100%;
-    --primary: 120 100% 50%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 160 100% 20%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 160 100% 20%;
-    --muted-foreground: 0 0% 70%;
-    --accent: 120 100% 50%;
-    --accent-foreground: 0 0% 0%;
-    --border: 160 100% 20%;
-    --input: 160 100% 20%;
+    --background: 160 100% 10% !important;
+    --foreground: 0 0% 100% !important;
+    --card: 160 100% 14% !important;
+    --card-foreground: 0 0% 100% !important;
+    --primary: 120 100% 50% !important;
+    --primary-foreground: 0 0% 0% !important;
+    --secondary: 160 100% 20% !important;
+    --secondary-foreground: 0 0% 100% !important;
+    --muted: 160 100% 20% !important;
+    --muted-foreground: 0 0% 70% !important;
+    --accent: 120 100% 50% !important;
+    --accent-foreground: 0 0% 0% !important;
+    --border: 160 100% 20% !important;
+    --input: 160 100% 20% !important;
   }
 
   /* Theme: Snapchat - Fixed */
   .theme-snapchat {
-    --background: 60 100% 95%;
-    --foreground: 0 0% 0%;
-    --card: 60 100% 98%;
-    --card-foreground: 0 0% 0%;
-    --primary: 60 100% 50%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 0 0% 0%;
-    --secondary-foreground: 60 100% 50%;
-    --muted: 60 100% 90%;
-    --muted-foreground: 0 0% 40%;
-    --accent: 0 0% 0%;
-    --accent-foreground: 60 100% 50%;
-    --border: 60 100% 85%;
-    --input: 60 100% 85%;
+    --background: 60 100% 95% !important;
+    --foreground: 0 0% 0% !important;
+    --card: 60 100% 98% !important;
+    --card-foreground: 0 0% 0% !important;
+    --primary: 60 100% 50% !important;
+    --primary-foreground: 0 0% 0% !important;
+    --secondary: 0 0% 0% !important;
+    --secondary-foreground: 60 100% 50% !important;
+    --muted: 60 100% 90% !important;
+    --muted-foreground: 0 0% 40% !important;
+    --accent: 0 0% 0% !important;
+    --accent-foreground: 60 100% 50% !important;
+    --border: 60 100% 85% !important;
+    --input: 60 100% 85% !important;
   }
 
   /* Theme: Steam */
   .theme-steam {
-    --background: 210 100% 10%;
-    --foreground: 0 0% 100%;
-    --card: 210 100% 15%;
-    --card-foreground: 0 0% 100%;
-    --primary: 200 100% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 100% 20%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 210 100% 20%;
-    --muted-foreground: 0 0% 70%;
-    --accent: 200 100% 50%;
-    --accent-foreground: 0 0% 100%;
-    --border: 210 100% 20%;
-    --input: 210 100% 20%;
+    --background: 210 100% 10% !important;
+    --foreground: 0 0% 100% !important;
+    --card: 210 100% 15% !important;
+    --card-foreground: 0 0% 100% !important;
+    --primary: 200 100% 50% !important;
+    --primary-foreground: 0 0% 100% !important;
+    --secondary: 210 100% 20% !important;
+    --secondary-foreground: 0 0% 100% !important;
+    --muted: 210 100% 20% !important;
+    --muted-foreground: 0 0% 70% !important;
+    --accent: 200 100% 50% !important;
+    --accent-foreground: 0 0% 100% !important;
+    --border: 210 100% 20% !important;
+    --input: 210 100% 20% !important;
   }
 
   /* Theme: Uber */
   .theme-uber {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 100%;
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 70%;
-    --accent: 0 0% 100%;
-    --accent-foreground: 0 0% 0%;
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
+    --background: 0 0% 0% !important;
+    --foreground: 0 0% 100% !important;
+    --card: 0 0% 10% !important;
+    --card-foreground: 0 0% 100% !important;
+    --primary: 0 0% 100% !important;
+    --primary-foreground: 0 0% 0% !important;
+    --secondary: 0 0% 15% !important;
+    --secondary-foreground: 0 0% 100% !important;
+    --muted: 0 0% 15% !important;
+    --muted-foreground: 0 0% 70% !important;
+    --accent: 0 0% 100% !important;
+    --accent-foreground: 0 0% 0% !important;
+    --border: 0 0% 15% !important;
+    --input: 0 0% 15% !important;
   }
 
   /* Theme: TikTok */
   .theme-tiktok {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 100%;
-    --primary: 326 100% 60%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 196 100% 50%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 70%;
-    --accent: 196 100% 50%;
-    --accent-foreground: 0 0% 100%;
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
+    --background: 0 0% 0% !important;
+    --foreground: 0 0% 100% !important;
+    --card: 0 0% 10% !important;
+    --card-foreground: 0 0% 100% !important;
+    --primary: 326 100% 60% !important;
+    --primary-foreground: 0 0% 100% !important;
+    --secondary: 196 100% 50% !important;
+    --secondary-foreground: 0 0% 100% !important;
+    --muted: 0 0% 15% !important;
+    --muted-foreground: 0 0% 70% !important;
+    --accent: 196 100% 50% !important;
+    --accent-foreground: 0 0% 100% !important;
+    --border: 0 0% 15% !important;
+    --input: 0 0% 15% !important;
   }
 
   /* Theme: Beach */
   .theme-beach {
-    --background: 200 100% 90%;
-    --foreground: 25 100% 25%;
-    --card: 200 100% 95%;
-    --card-foreground: 25 100% 25%;
-    --primary: 200 100% 45%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 40 100% 80%;
-    --secondary-foreground: 25 100% 25%;
-    --muted: 200 100% 85%;
-    --muted-foreground: 25 100% 40%;
-    --accent: 25 100% 60%;
-    --accent-foreground: 0 0% 100%;
-    --border: 200 100% 80%;
-    --input: 200 100% 80%;
+    --background: 200 100% 90% !important;
+    --foreground: 25 100% 25% !important;
+    --card: 200 100% 95% !important;
+    --card-foreground: 25 100% 25% !important;
+    --primary: 200 100% 45% !important;
+    --primary-foreground: 0 0% 100% !important;
+    --secondary: 40 100% 80% !important;
+    --secondary-foreground: 25 100% 25% !important;
+    --muted: 200 100% 85% !important;
+    --muted-foreground: 25 100% 40% !important;
+    --accent: 25 100% 60% !important;
+    --accent-foreground: 0 0% 100% !important;
+    --border: 200 100% 80% !important;
+    --input: 200 100% 80% !important;
   }
 
   /* Theme: Mountain */
   .theme-mountain {
-    --background: 210 50% 95%;
-    --foreground: 210 50% 10%;
-    --card: 210 50% 98%;
-    --card-foreground: 210 50% 10%;
-    --primary: 210 50% 40%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 30% 70%;
-    --secondary-foreground: 210 50% 10%;
-    --muted: 210 50% 90%;
-    --muted-foreground: 210 50% 40%;
-    --accent: 210 50% 60%;
-    --accent-foreground: 0 0% 100%;
-    --border: 210 50% 85%;
-    --input: 210 50% 85%;
+    --background: 210 50% 95% !important;
+    --foreground: 210 50% 10% !important;
+    --card: 210 50% 98% !important;
+    --card-foreground: 210 50% 10% !important;
+    --primary: 210 50% 40% !important;
+    --primary-foreground: 0 0% 100% !important;
+    --secondary: 210 30% 70% !important;
+    --secondary-foreground: 210 50% 10% !important;
+    --muted: 210 50% 90% !important;
+    --muted-foreground: 210 50% 40% !important;
+    --accent: 210 50% 60% !important;
+    --accent-foreground: 0 0% 100% !important;
+    --border: 210 50% 85% !important;
+    --input: 210 50% 85% !important;
   }
 
   /* Theme: Rainforest */
   .theme-rainforest {
-    --background: 120 30% 95%;
-    --foreground: 120 50% 10%;
-    --card: 120 30% 98%;
-    --card-foreground: 120 50% 10%;
-    --primary: 120 50% 30%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 80 70% 60%;
-    --secondary-foreground: 120 50% 10%;
-    --muted: 120 30% 90%;
-    --muted-foreground: 120 50% 40%;
-    --accent: 40 100% 50%;
-    --accent-foreground: 0 0% 100%;
-    --border: 120 30% 85%;
-    --input: 120 30% 85%;
+    --background: 120 30% 95% !important;
+    --foreground: 120 50% 10% !important;
+    --card: 120 30% 98% !important;
+    --card-foreground: 120 50% 10% !important;
+    --primary: 120 50% 30% !important;
+    --primary-foreground: 0 0% 100% !important;
+    --secondary: 80 70% 60% !important;
+    --secondary-foreground: 120 50% 10% !important;
+    --muted: 120 30% 90% !important;
+    --muted-foreground: 120 50% 40% !important;
+    --accent: 40 100% 50% !important;
+    --accent-foreground: 0 0% 100% !important;
+    --border: 120 30% 85% !important;
+    --input: 120 30% 85% !important;
   }
 
   .theme-custom {
@@ -401,22 +401,45 @@ html[class*="theme-"] {
   color-scheme: light dark;
 }
 
-/* Theme-specific styles with !important to override any conflicting styles */
-.theme-netflix {
-  --background: 220 13% 13% !important;
-  --foreground: 0 0% 100% !important;
-  --card: 220 13% 18% !important;
-  --card-foreground: 0 0% 100% !important;
-  --primary: 0 100% 50% !important;
-  --primary-foreground: 0 0% 100% !important;
-  --secondary: 220 13% 23% !important;
-  --secondary-foreground: 0 0% 100% !important;
-  --muted: 220 13% 23% !important;
-  --muted-foreground: 0 0% 70% !important;
-  --accent: 0 100% 50% !important;
-  --accent-foreground: 0 0% 100% !important;
-  --border: 220 13% 23% !important;
-  --input: 220 13% 23% !important;
+/* Direct background color application for sections */
+section {
+  background-color: hsl(var(--background)) !important;
 }
 
-/* Add similar !important rules for other themes */
+section[id="experience"],
+section[id="skills"],
+section[id="contact"] {
+  background-color: hsl(var(--muted)) !important;
+}
+
+/* Force background colors for specific elements */
+.bg-background {
+  background-color: hsl(var(--background)) !important;
+}
+
+.bg-muted {
+  background-color: hsl(var(--muted)) !important;
+}
+
+/* Override any conflicting styles */
+[class*="theme-"] .bg-slate-50 {
+  background-color: hsl(var(--muted)) !important;
+}
+
+[class*="theme-"] .bg-white {
+  background-color: hsl(var(--background)) !important;
+}
+
+[class*="theme-"] .dark\:bg-slate-950 {
+  background-color: hsl(var(--background)) !important;
+}
+
+[class*="theme-"] .dark\:bg-slate-900 {
+  background-color: hsl(var(--muted)) !important;
+}
+
+/* Ensure the theme is applied to all elements */
+html[class*="theme-"] *,
+body[class*="theme-"] * {
+  --theme-applied: true;
+}

@@ -68,30 +68,33 @@ export default function Home() {
   }
 
   return (
-    <main className={`min-h-screen ${isEditMode ? "edit-mode" : ""}`}>
+    <main
+      className={`min-h-screen ${isEditMode ? "edit-mode" : ""}`}
+      style={{ backgroundColor: "hsl(var(--background))" }}
+    >
       <Hero data={portfolioData.title} />
 
-      <SectionWrapper id="about" bgColor="bg-white dark:bg-slate-950">
+      <SectionWrapper id="about" bgColor="bg-background dark:bg-background">
         <About data={portfolioData.introduction} />
       </SectionWrapper>
 
-      <SectionWrapper id="experience" bgColor="bg-slate-50 dark:bg-slate-900">
+      <SectionWrapper id="experience" bgColor="bg-muted dark:bg-muted">
         <Experience data={portfolioData.workExperience} />
       </SectionWrapper>
 
-      <SectionWrapper id="projects" bgColor="bg-white dark:bg-slate-950">
+      <SectionWrapper id="projects" bgColor="bg-background dark:bg-background">
         <Projects data={portfolioData.projects} />
       </SectionWrapper>
 
-      <SectionWrapper id="skills" bgColor="bg-slate-50 dark:bg-slate-900">
+      <SectionWrapper id="skills" bgColor="bg-muted dark:bg-muted">
         <Skills data={portfolioData.skills} />
       </SectionWrapper>
 
-      <SectionWrapper id="achievements" bgColor="bg-white dark:bg-slate-950">
+      <SectionWrapper id="achievements" bgColor="bg-background dark:bg-background">
         <AwardsCertifications data={awardsData} />
       </SectionWrapper>
 
-      <SectionWrapper id="contact" bgColor="bg-slate-50 dark:bg-slate-900">
+      <SectionWrapper id="contact" bgColor="bg-muted dark:bg-muted">
         <Contact data={portfolioData.contacts} />
       </SectionWrapper>
 
@@ -120,8 +123,8 @@ export default function Home() {
             id={key}
             bgColor={
               Object.keys(portfolioData).indexOf(key) % 2 === 0
-                ? "bg-white dark:bg-slate-950"
-                : "bg-slate-50 dark:bg-slate-900"
+                ? "bg-background dark:bg-background"
+                : "bg-muted dark:bg-muted"
             }
           >
             <div className="space-y-6">
