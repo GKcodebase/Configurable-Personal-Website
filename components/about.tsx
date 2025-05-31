@@ -192,7 +192,10 @@ export default function About({ data, className = "" }: AboutProps) {
             className={`font-bold tracking-tighter sm:text-4xl md:text-5xl ${data.size}`}
             as="h2"
           />
-          <div className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+          <div
+            className="mx-auto max-w-[700px] text-muted-foreground md:text-xl"
+            style={{ direction: "ltr", unicodeBidi: "normal" }}
+          >
             {data.content.map((paragraph, index) => (
               <div key={index} className="relative mb-4 group">
                 <EditableText
