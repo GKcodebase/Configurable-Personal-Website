@@ -157,7 +157,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
     const root = document.documentElement
 
-    // Apply theme class
+    // Apply theme class with force
     root.classList.remove(
       "theme-netflix",
       "theme-youtube",
@@ -171,6 +171,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       "theme-rainforest",
       "theme-custom",
     )
+
+    // Force reflow to ensure class removal takes effect
+    root.offsetHeight
+
     root.classList.add(`theme-${settings.theme}`)
 
     // Apply font family
@@ -181,8 +185,11 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     document.body.classList.remove("text-sm", "text-base", "text-lg", "text-xl")
     document.body.classList.add(`text-${settings.fontSize}`)
 
-    // Apply custom colors for custom theme
-    if (settings.theme === "custom") {
+    // Apply predefined theme variables for non-custom themes
+    if (settings.theme !== "custom") {
+      applyPredefinedThemeVariables(settings.theme, root)
+    } else {
+      // Apply custom colors for custom theme
       const primaryHsl = hexToHsl(settings.primaryColor)
       const secondaryHsl = hexToHsl(settings.secondaryColor)
 
@@ -204,187 +211,204 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     // Apply spacing classes to body
     document.body.style.setProperty("--spacing-margin", `${Number.parseInt(settings.margin) * 0.25}rem`)
     document.body.style.setProperty("--spacing-padding", `${Number.parseInt(settings.padding) * 0.25}rem`)
+
+    // Force a repaint to ensure styles are applied
+    document.body.style.display = "none"
+    document.body.offsetHeight
+    document.body.style.display = ""
   }, [settings, isDarkMode])
 
   // Function to apply predefined theme variables directly
   const applyPredefinedThemeVariables = (theme: ThemeType, root: HTMLElement) => {
     // Reset any custom theme variables first
-    root.style.removeProperty("--primary")
-    root.style.removeProperty("--primary-foreground")
-    root.style.removeProperty("--secondary")
-    root.style.removeProperty("--secondary-foreground")
-    root.style.removeProperty("--accent")
-    root.style.removeProperty("--accent-foreground")
-    root.style.removeProperty("--background")
-    root.style.removeProperty("--foreground")
-    root.style.removeProperty("--card")
-    root.style.removeProperty("--card-foreground")
-    root.style.removeProperty("--muted")
-    root.style.removeProperty("--muted-foreground")
-    root.style.removeProperty("--border")
-    root.style.removeProperty("--input")
+    const cssVars = [
+      "--primary",
+      "--primary-foreground",
+      "--secondary",
+      "--secondary-foreground",
+      "--accent",
+      "--accent-foreground",
+      "--background",
+      "--foreground",
+      "--card",
+      "--card-foreground",
+      "--muted",
+      "--muted-foreground",
+      "--border",
+      "--input",
+      "--ring",
+    ]
+
+    cssVars.forEach((cssVar) => {
+      root.style.removeProperty(cssVar)
+    })
+
+    // Apply theme-specific variables with !important flag
+    const setThemeVar = (property: string, value: string) => {
+      root.style.setProperty(property, value, "important")
+    }
 
     // Apply theme-specific variables
     switch (theme) {
       case "netflix":
-        root.style.setProperty("--background", "220 13% 13%")
-        root.style.setProperty("--foreground", "0 0% 100%")
-        root.style.setProperty("--card", "220 13% 18%")
-        root.style.setProperty("--card-foreground", "0 0% 100%")
-        root.style.setProperty("--primary", "0 100% 50%")
-        root.style.setProperty("--primary-foreground", "0 0% 100%")
-        root.style.setProperty("--secondary", "220 13% 23%")
-        root.style.setProperty("--secondary-foreground", "0 0% 100%")
-        root.style.setProperty("--muted", "220 13% 23%")
-        root.style.setProperty("--muted-foreground", "0 0% 70%")
-        root.style.setProperty("--accent", "0 100% 50%")
-        root.style.setProperty("--accent-foreground", "0 0% 100%")
-        root.style.setProperty("--border", "220 13% 23%")
-        root.style.setProperty("--input", "220 13% 23%")
+        setThemeVar("--background", "220 13% 13%")
+        setThemeVar("--foreground", "0 0% 100%")
+        setThemeVar("--card", "220 13% 18%")
+        setThemeVar("--card-foreground", "0 0% 100%")
+        setThemeVar("--primary", "0 100% 50%")
+        setThemeVar("--primary-foreground", "0 0% 100%")
+        setThemeVar("--secondary", "220 13% 23%")
+        setThemeVar("--secondary-foreground", "0 0% 100%")
+        setThemeVar("--muted", "220 13% 23%")
+        setThemeVar("--muted-foreground", "0 0% 70%")
+        setThemeVar("--accent", "0 100% 50%")
+        setThemeVar("--accent-foreground", "0 0% 100%")
+        setThemeVar("--border", "220 13% 23%")
+        setThemeVar("--input", "220 13% 23%")
         break
       case "youtube":
-        root.style.setProperty("--background", "0 0% 100%")
-        root.style.setProperty("--foreground", "0 0% 0%")
-        root.style.setProperty("--card", "0 0% 98%")
-        root.style.setProperty("--card-foreground", "0 0% 0%")
-        root.style.setProperty("--primary", "0 100% 50%")
-        root.style.setProperty("--primary-foreground", "0 0% 100%")
-        root.style.setProperty("--secondary", "0 0% 95%")
-        root.style.setProperty("--secondary-foreground", "0 0% 0%")
-        root.style.setProperty("--muted", "0 0% 95%")
-        root.style.setProperty("--muted-foreground", "0 0% 40%")
-        root.style.setProperty("--accent", "0 100% 50%")
-        root.style.setProperty("--accent-foreground", "0 0% 100%")
-        root.style.setProperty("--border", "0 0% 90%")
-        root.style.setProperty("--input", "0 0% 90%")
+        setThemeVar("--background", "0 0% 100%")
+        setThemeVar("--foreground", "0 0% 0%")
+        setThemeVar("--card", "0 0% 98%")
+        setThemeVar("--card-foreground", "0 0% 0%")
+        setThemeVar("--primary", "0 100% 50%")
+        setThemeVar("--primary-foreground", "0 0% 100%")
+        setThemeVar("--secondary", "0 0% 95%")
+        setThemeVar("--secondary-foreground", "0 0% 0%")
+        setThemeVar("--muted", "0 0% 95%")
+        setThemeVar("--muted-foreground", "0 0% 40%")
+        setThemeVar("--accent", "0 100% 50%")
+        setThemeVar("--accent-foreground", "0 0% 100%")
+        setThemeVar("--border", "0 0% 90%")
+        setThemeVar("--input", "0 0% 90%")
         break
       case "spotify":
-        root.style.setProperty("--background", "160 100% 10%")
-        root.style.setProperty("--foreground", "0 0% 100%")
-        root.style.setProperty("--card", "160 100% 14%")
-        root.style.setProperty("--card-foreground", "0 0% 100%")
-        root.style.setProperty("--primary", "120 100% 50%")
-        root.style.setProperty("--primary-foreground", "0 0% 0%")
-        root.style.setProperty("--secondary", "160 100% 20%")
-        root.style.setProperty("--secondary-foreground", "0 0% 100%")
-        root.style.setProperty("--muted", "160 100% 20%")
-        root.style.setProperty("--muted-foreground", "0 0% 70%")
-        root.style.setProperty("--accent", "120 100% 50%")
-        root.style.setProperty("--accent-foreground", "0 0% 0%")
-        root.style.setProperty("--border", "160 100% 20%")
-        root.style.setProperty("--input", "160 100% 20%")
+        setThemeVar("--background", "160 100% 10%")
+        setThemeVar("--foreground", "0 0% 100%")
+        setThemeVar("--card", "160 100% 14%")
+        setThemeVar("--card-foreground", "0 0% 100%")
+        setThemeVar("--primary", "120 100% 50%")
+        setThemeVar("--primary-foreground", "0 0% 0%")
+        setThemeVar("--secondary", "160 100% 20%")
+        setThemeVar("--secondary-foreground", "0 0% 100%")
+        setThemeVar("--muted", "160 100% 20%")
+        setThemeVar("--muted-foreground", "0 0% 70%")
+        setThemeVar("--accent", "120 100% 50%")
+        setThemeVar("--accent-foreground", "0 0% 0%")
+        setThemeVar("--border", "160 100% 20%")
+        setThemeVar("--input", "160 100% 20%")
         break
       case "snapchat":
-        root.style.setProperty("--background", "60 100% 95%")
-        root.style.setProperty("--foreground", "0 0% 0%")
-        root.style.setProperty("--card", "60 100% 98%")
-        root.style.setProperty("--card-foreground", "0 0% 0%")
-        root.style.setProperty("--primary", "60 100% 50%")
-        root.style.setProperty("--primary-foreground", "0 0% 0%")
-        root.style.setProperty("--secondary", "0 0% 0%")
-        root.style.setProperty("--secondary-foreground", "60 100% 50%")
-        root.style.setProperty("--muted", "60 100% 90%")
-        root.style.setProperty("--muted-foreground", "0 0% 40%")
-        root.style.setProperty("--accent", "0 0% 0%")
-        root.style.setProperty("--accent-foreground", "60 100% 50%")
-        root.style.setProperty("--border", "60 100% 85%")
-        root.style.setProperty("--input", "60 100% 85%")
+        setThemeVar("--background", "60 100% 95%")
+        setThemeVar("--foreground", "0 0% 0%")
+        setThemeVar("--card", "60 100% 98%")
+        setThemeVar("--card-foreground", "0 0% 0%")
+        setThemeVar("--primary", "60 100% 50%")
+        setThemeVar("--primary-foreground", "0 0% 0%")
+        setThemeVar("--secondary", "0 0% 0%")
+        setThemeVar("--secondary-foreground", "60 100% 50%")
+        setThemeVar("--muted", "60 100% 90%")
+        setThemeVar("--muted-foreground", "0 0% 40%")
+        setThemeVar("--accent", "0 0% 0%")
+        setThemeVar("--accent-foreground", "60 100% 50%")
+        setThemeVar("--border", "60 100% 85%")
+        setThemeVar("--input", "60 100% 85%")
         break
       case "steam":
-        root.style.setProperty("--background", "210 100% 10%")
-        root.style.setProperty("--foreground", "0 0% 100%")
-        root.style.setProperty("--card", "210 100% 15%")
-        root.style.setProperty("--card-foreground", "0 0% 100%")
-        root.style.setProperty("--primary", "200 100% 50%")
-        root.style.setProperty("--primary-foreground", "0 0% 100%")
-        root.style.setProperty("--secondary", "210 100% 20%")
-        root.style.setProperty("--secondary-foreground", "0 0% 100%")
-        root.style.setProperty("--muted", "210 100% 20%")
-        root.style.setProperty("--muted-foreground", "0 0% 70%")
-        root.style.setProperty("--accent", "200 100% 50%")
-        root.style.setProperty("--accent-foreground", "0 0% 100%")
-        root.style.setProperty("--border", "210 100% 20%")
-        root.style.setProperty("--input", "210 100% 20%")
+        setThemeVar("--background", "210 100% 10%")
+        setThemeVar("--foreground", "0 0% 100%")
+        setThemeVar("--card", "210 100% 15%")
+        setThemeVar("--card-foreground", "0 0% 100%")
+        setThemeVar("--primary", "200 100% 50%")
+        setThemeVar("--primary-foreground", "0 0% 100%")
+        setThemeVar("--secondary", "210 100% 20%")
+        setThemeVar("--secondary-foreground", "0 0% 100%")
+        setThemeVar("--muted", "210 100% 20%")
+        setThemeVar("--muted-foreground", "0 0% 70%")
+        setThemeVar("--accent", "200 100% 50%")
+        setThemeVar("--accent-foreground", "0 0% 100%")
+        setThemeVar("--border", "210 100% 20%")
+        setThemeVar("--input", "210 100% 20%")
         break
       case "uber":
-        root.style.setProperty("--background", "0 0% 0%")
-        root.style.setProperty("--foreground", "0 0% 100%")
-        root.style.setProperty("--card", "0 0% 10%")
-        root.style.setProperty("--card-foreground", "0 0% 100%")
-        root.style.setProperty("--primary", "0 0% 100%")
-        root.style.setProperty("--primary-foreground", "0 0% 0%")
-        root.style.setProperty("--secondary", "0 0% 15%")
-        root.style.setProperty("--secondary-foreground", "0 0% 100%")
-        root.style.setProperty("--muted", "0 0% 15%")
-        root.style.setProperty("--muted-foreground", "0 0% 70%")
-        root.style.setProperty("--accent", "0 0% 100%")
-        root.style.setProperty("--accent-foreground", "0 0% 0%")
-        root.style.setProperty("--border", "0 0% 15%")
-        root.style.setProperty("--input", "0 0% 15%")
+        setThemeVar("--background", "0 0% 0%")
+        setThemeVar("--foreground", "0 0% 100%")
+        setThemeVar("--card", "0 0% 10%")
+        setThemeVar("--card-foreground", "0 0% 100%")
+        setThemeVar("--primary", "0 0% 100%")
+        setThemeVar("--primary-foreground", "0 0% 0%")
+        setThemeVar("--secondary", "0 0% 15%")
+        setThemeVar("--secondary-foreground", "0 0% 100%")
+        setThemeVar("--muted", "0 0% 15%")
+        setThemeVar("--muted-foreground", "0 0% 70%")
+        setThemeVar("--accent", "0 0% 100%")
+        setThemeVar("--accent-foreground", "0 0% 0%")
+        setThemeVar("--border", "0 0% 15%")
+        setThemeVar("--input", "0 0% 15%")
         break
       case "tiktok":
-        root.style.setProperty("--background", "0 0% 0%")
-        root.style.setProperty("--foreground", "0 0% 100%")
-        root.style.setProperty("--card", "0 0% 10%")
-        root.style.setProperty("--card-foreground", "0 0% 100%")
-        root.style.setProperty("--primary", "326 100% 60%")
-        root.style.setProperty("--primary-foreground", "0 0% 100%")
-        root.style.setProperty("--secondary", "196 100% 50%")
-        root.style.setProperty("--secondary-foreground", "0 0% 100%")
-        root.style.setProperty("--muted", "0 0% 15%")
-        root.style.setProperty("--muted-foreground", "0 0% 70%")
-        root.style.setProperty("--accent", "196 100% 50%")
-        root.style.setProperty("--accent-foreground", "0 0% 100%")
-        root.style.setProperty("--border", "0 0% 15%")
-        root.style.setProperty("--input", "0 0% 15%")
+        setThemeVar("--background", "0 0% 0%")
+        setThemeVar("--foreground", "0 0% 100%")
+        setThemeVar("--card", "0 0% 10%")
+        setThemeVar("--card-foreground", "0 0% 100%")
+        setThemeVar("--primary", "326 100% 60%")
+        setThemeVar("--primary-foreground", "0 0% 100%")
+        setThemeVar("--secondary", "196 100% 50%")
+        setThemeVar("--secondary-foreground", "0 0% 100%")
+        setThemeVar("--muted", "0 0% 15%")
+        setThemeVar("--muted-foreground", "0 0% 70%")
+        setThemeVar("--accent", "196 100% 50%")
+        setThemeVar("--accent-foreground", "0 0% 100%")
+        setThemeVar("--border", "0 0% 15%")
+        setThemeVar("--input", "0 0% 15%")
         break
       case "beach":
-        root.style.setProperty("--background", "200 100% 90%")
-        root.style.setProperty("--foreground", "25 100% 25%")
-        root.style.setProperty("--card", "200 100% 95%")
-        root.style.setProperty("--card-foreground", "25 100% 25%")
-        root.style.setProperty("--primary", "200 100% 45%")
-        root.style.setProperty("--primary-foreground", "0 0% 100%")
-        root.style.setProperty("--secondary", "40 100% 80%")
-        root.style.setProperty("--secondary-foreground", "25 100% 25%")
-        root.style.setProperty("--muted", "200 100% 85%")
-        root.style.setProperty("--muted-foreground", "25 100% 40%")
-        root.style.setProperty("--accent", "25 100% 60%")
-        root.style.setProperty("--accent-foreground", "0 0% 100%")
-        root.style.setProperty("--border", "200 100% 80%")
-        root.style.setProperty("--input", "200 100% 80%")
+        setThemeVar("--background", "200 100% 90%")
+        setThemeVar("--foreground", "25 100% 25%")
+        setThemeVar("--card", "200 100% 95%")
+        setThemeVar("--card-foreground", "25 100% 25%")
+        setThemeVar("--primary", "200 100% 45%")
+        setThemeVar("--primary-foreground", "0 0% 100%")
+        setThemeVar("--secondary", "40 100% 80%")
+        setThemeVar("--secondary-foreground", "25 100% 25%")
+        setThemeVar("--muted", "200 100% 85%")
+        setThemeVar("--muted-foreground", "25 100% 40%")
+        setThemeVar("--accent", "25 100% 60%")
+        setThemeVar("--accent-foreground", "0 0% 100%")
+        setThemeVar("--border", "200 100% 80%")
+        setThemeVar("--input", "200 100% 80%")
         break
       case "mountain":
-        root.style.setProperty("--background", "210 50% 95%")
-        root.style.setProperty("--foreground", "210 50% 10%")
-        root.style.setProperty("--card", "210 50% 98%")
-        root.style.setProperty("--card-foreground", "210 50% 10%")
-        root.style.setProperty("--primary", "210 50% 40%")
-        root.style.setProperty("--primary-foreground", "0 0% 100%")
-        root.style.setProperty("--secondary", "210 30% 70%")
-        root.style.setProperty("--secondary-foreground", "210 50% 10%")
-        root.style.setProperty("--muted", "210 50% 90%")
-        root.style.setProperty("--muted-foreground", "210 50% 40%")
-        root.style.setProperty("--accent", "210 50% 60%")
-        root.style.setProperty("--accent-foreground", "0 0% 100%")
-        root.style.setProperty("--border", "210 50% 85%")
-        root.style.setProperty("--input", "210 50% 85%")
+        setThemeVar("--background", "210 50% 95%")
+        setThemeVar("--foreground", "210 50% 10%")
+        setThemeVar("--card", "210 50% 98%")
+        setThemeVar("--card-foreground", "210 50% 10%")
+        setThemeVar("--primary", "210 50% 40%")
+        setThemeVar("--primary-foreground", "0 0% 100%")
+        setThemeVar("--secondary", "210 30% 70%")
+        setThemeVar("--secondary-foreground", "210 50% 10%")
+        setThemeVar("--muted", "210 50% 90%")
+        setThemeVar("--muted-foreground", "210 50% 40%")
+        setThemeVar("--accent", "210 50% 60%")
+        setThemeVar("--accent-foreground", "0 0% 100%")
+        setThemeVar("--border", "210 50% 85%")
+        setThemeVar("--input", "210 50% 85%")
         break
       case "rainforest":
-        root.style.setProperty("--background", "120 30% 95%")
-        root.style.setProperty("--foreground", "120 50% 10%")
-        root.style.setProperty("--card", "120 30% 98%")
-        root.style.setProperty("--card-foreground", "120 50% 10%")
-        root.style.setProperty("--primary", "120 50% 30%")
-        root.style.setProperty("--primary-foreground", "0 0% 100%")
-        root.style.setProperty("--secondary", "80 70% 60%")
-        root.style.setProperty("--secondary-foreground", "120 50% 10%")
-        root.style.setProperty("--muted", "120 30% 90%")
-        root.style.setProperty("--muted-foreground", "120 50% 40%")
-        root.style.setProperty("--accent", "40 100% 50%")
-        root.style.setProperty("--accent-foreground", "0 0% 100%")
-        root.style.setProperty("--border", "120 30% 85%")
-        root.style.setProperty("--input", "120 30% 85%")
+        setThemeVar("--background", "120 30% 95%")
+        setThemeVar("--foreground", "120 50% 10%")
+        setThemeVar("--card", "120 30% 98%")
+        setThemeVar("--card-foreground", "120 50% 10%")
+        setThemeVar("--primary", "120 50% 30%")
+        setThemeVar("--primary-foreground", "0 0% 100%")
+        setThemeVar("--secondary", "80 70% 60%")
+        setThemeVar("--secondary-foreground", "120 50% 10%")
+        setThemeVar("--muted", "120 30% 90%")
+        setThemeVar("--muted-foreground", "120 50% 40%")
+        setThemeVar("--accent", "40 100% 50%")
+        setThemeVar("--accent-foreground", "0 0% 100%")
+        setThemeVar("--border", "120 30% 85%")
+        setThemeVar("--input", "120 30% 85%")
         break
       // Default case is handled by the CSS variables in globals.css
     }

@@ -530,8 +530,8 @@
   outline-offset: 2px;
 }
 
-/* Force theme application for production */
-:root[class*="theme-"] {
+/* Force theme application for both light and dark modes */
+html[class*="theme-"] {
   --forced-theme-applied: true;
 }
 
@@ -540,63 +540,81 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Ensure theme variables are applied with higher specificity */
-:root.dark[class*="theme-"],
-:root:not(.dark)[class*="theme-"] {
-  color-scheme: light dark;
-}
-
-/* Force theme application */
-html[class*="theme-"] body,
-body[class*="theme-"] {
+/* Force theme application with higher specificity */
+html[class*="theme-"] body {
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Ensure theme variables are applied with higher specificity */
-:root[class*="theme-"],
-html[class*="theme-"] {
-  color-scheme: light dark;
-}
-
 /* Direct background color application for sections */
-section {
+html[class*="theme-"] section {
   background-color: hsl(var(--background)) !important;
 }
 
-section[id="experience"],
-section[id="skills"],
-section[id="contact"] {
+html[class*="theme-"] section[id="experience"],
+html[class*="theme-"] section[id="skills"],
+html[class*="theme-"] section[id="contact"] {
   background-color: hsl(var(--muted)) !important;
 }
 
-/* Force background colors for specific elements */
-.bg-background {
+/* Force background colors for specific elements with theme classes */
+html[class*="theme-"] .bg-background {
   background-color: hsl(var(--background)) !important;
 }
 
-.bg-muted {
+html[class*="theme-"] .bg-muted {
   background-color: hsl(var(--muted)) !important;
 }
 
-/* Override any conflicting styles */
-[class*="theme-"] .bg-slate-50 {
-  background-color: hsl(var(--muted)) !important;
-}
-
-[class*="theme-"] .bg-white {
+/* Override Tailwind's default background classes when themes are active */
+html[class*="theme-"] .bg-slate-50,
+html[class*="theme-"] .bg-white {
   background-color: hsl(var(--background)) !important;
 }
 
-[class*="theme-"] .dark\:bg-slate-950 {
+html[class*="theme-"] .dark\:bg-slate-950,
+html[class*="theme-"] .dark\:bg-slate-900 {
   background-color: hsl(var(--background)) !important;
 }
 
-[class*="theme-"] .dark\:bg-slate-900 {
-  background-color: hsl(var(--muted)) !important;
+/* Ensure cards and other components use theme colors */
+html[class*="theme-"] .bg-card {
+  background-color: hsl(var(--card)) !important;
 }
 
-/* Ensure the theme is applied to all elements */
-html[class*="theme-"] *,
-body[class*="theme-"] * {
+html[class*="theme-"] .text-card-foreground {
+  color: hsl(var(--card-foreground)) !important;
+}
+
+/* Force primary and secondary colors */
+html[class*="theme-"] .bg-primary {
+  background-color: hsl(var(--primary)) !important;
+}
+
+html[class*="theme-"] .text-primary {
+  color: hsl(var(--primary)) !important;
+}
+
+html[class*="theme-"] .bg-secondary {
+  background-color: hsl(var(--secondary)) !important;
+}
+
+html[class*="theme-"] .text-secondary {
+  color: hsl(var(--secondary)) !important;
+}
+
+/* Ensure header and footer use theme colors */
+html[class*="theme-"] header {
+  background-color: hsl(var(--background) / 0.8) !important;
+}
+
+html[class*="theme-"] footer {
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Force theme application to all child elements */
+html[class*="theme-"] * {
   --theme-applied: true;
 }
