@@ -153,109 +153,58 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   // Apply theme changes to the DOM
   useEffect(() => {
-    // Ensure this effect only runs in the browser
     if (typeof window === "undefined") return
 
-    const html = document.documentElement
-    const body = document.body
+    const root = document.documentElement
 
-    // Apply theme immediately
-    const applyTheme = () => {
-      console.log("Applying theme:", settings.theme)
+    // Apply theme class
+    root.classList.remove(
+      "theme-netflix",
+      "theme-youtube",
+      "theme-spotify",
+      "theme-snapchat",
+      "theme-steam",
+      "theme-uber",
+      "theme-tiktok",
+      "theme-beach",
+      "theme-mountain",
+      "theme-rainforest",
+      "theme-custom",
+    )
+    root.classList.add(`theme-${settings.theme}`)
 
-      // Remove all theme classes from both html and body
-      html.classList.remove(
-        "theme-netflix",
-        "theme-youtube",
-        "theme-spotify",
-        "theme-snapchat",
-        "theme-steam",
-        "theme-uber",
-        "theme-tiktok",
-        "theme-beach",
-        "theme-mountain",
-        "theme-rainforest",
-        "theme-custom",
-      )
-      body.classList.remove(
-        "theme-netflix",
-        "theme-youtube",
-        "theme-spotify",
-        "theme-snapchat",
-        "theme-steam",
-        "theme-uber",
-        "theme-tiktok",
-        "theme-beach",
-        "theme-mountain",
-        "theme-rainforest",
-        "theme-custom",
-      )
+    // Apply font family
+    root.classList.remove("font-inter", "font-roboto", "font-poppins", "font-openSans", "font-lato")
+    root.classList.add(`font-${settings.fontFamily}`)
 
-      // Add current theme class to both html and body
-      const themeClass = `theme-${settings.theme}`
-      html.classList.add(themeClass)
-      body.classList.add(themeClass)
+    // Apply font size to body
+    document.body.classList.remove("text-sm", "text-base", "text-lg", "text-xl")
+    document.body.classList.add(`text-${settings.fontSize}`)
 
-      // Apply font family
-      body.classList.remove("font-inter", "font-roboto", "font-poppins", "font-openSans", "font-lato")
-      body.classList.add(`font-${settings.fontFamily}`)
+    // Apply custom colors for custom theme
+    if (settings.theme === "custom") {
+      const primaryHsl = hexToHsl(settings.primaryColor)
+      const secondaryHsl = hexToHsl(settings.secondaryColor)
 
-      // Apply font size
-      body.classList.remove("text-sm", "text-base", "text-lg", "text-xl")
-      body.classList.add(`text-${settings.fontSize}`)
-
-      // Apply theme-specific CSS variables directly to :root and html
-      if (settings.theme === "custom") {
-        // Convert hex to hsl for CSS variables
-        const primaryHsl = hexToHsl(settings.primaryColor)
-        const secondaryHsl = hexToHsl(settings.secondaryColor)
-
-        if (primaryHsl) {
-          html.style.setProperty("--primary", primaryHsl)
-          const isDarkPrimary = isColorDark(settings.primaryColor)
-          html.style.setProperty("--primary-foreground", isDarkPrimary ? "0 0% 100%" : "0 0% 0%")
-        }
-
-        if (secondaryHsl) {
-          html.style.setProperty("--secondary", secondaryHsl)
-          html.style.setProperty("--accent", secondaryHsl)
-          const isDarkSecondary = isColorDark(settings.secondaryColor)
-          html.style.setProperty("--secondary-foreground", isDarkSecondary ? "0 0% 100%" : "0 0% 0%")
-          html.style.setProperty("--accent-foreground", isDarkSecondary ? "0 0% 100%" : "0 0% 0%")
-        }
-      } else {
-        // For predefined themes, apply CSS variables directly
-        applyPredefinedThemeVariables(settings.theme, html)
+      if (primaryHsl) {
+        root.style.setProperty("--primary", primaryHsl)
+        const isDarkPrimary = isColorDark(settings.primaryColor)
+        root.style.setProperty("--primary-foreground", isDarkPrimary ? "0 0% 100%" : "0 0% 0%")
       }
 
-      // Force a repaint to ensure theme changes are applied
-      const currentDisplay = body.style.display
-      body.style.display = "none"
-      void body.offsetHeight // Trigger a reflow
-      body.style.display = currentDisplay
+      if (secondaryHsl) {
+        root.style.setProperty("--secondary", secondaryHsl)
+        root.style.setProperty("--accent", secondaryHsl)
+        const isDarkSecondary = isColorDark(settings.secondaryColor)
+        root.style.setProperty("--secondary-foreground", isDarkSecondary ? "0 0% 100%" : "0 0% 0%")
+        root.style.setProperty("--accent-foreground", isDarkSecondary ? "0 0% 100%" : "0 0% 0%")
+      }
     }
 
-    // Apply theme immediately and after a short delay to ensure it takes effect
-    applyTheme()
-
-    // Apply theme again after a delay to ensure it takes effect
-    const timeoutId = setTimeout(applyTheme, 100)
-
-    // Apply theme one more time after page is fully loaded
-    window.addEventListener("load", applyTheme)
-
-    return () => {
-      clearTimeout(timeoutId)
-      window.removeEventListener("load", applyTheme)
-    }
-  }, [
-    settings.theme,
-    settings.fontFamily,
-    settings.fontSize,
-    settings.primaryColor,
-    settings.secondaryColor,
-    isDarkMode,
-  ])
+    // Apply spacing classes to body
+    document.body.style.setProperty("--spacing-margin", `${Number.parseInt(settings.margin) * 0.25}rem`)
+    document.body.style.setProperty("--spacing-padding", `${Number.parseInt(settings.padding) * 0.25}rem`)
+  }, [settings, isDarkMode])
 
   // Function to apply predefined theme variables directly
   const applyPredefinedThemeVariables = (theme: ThemeType, root: HTMLElement) => {
