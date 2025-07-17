@@ -34,8 +34,8 @@
 
     --radius: 0.5rem;
 
-    /* Custom theme uses the default light/dark mode variables but can be overridden with custom colors */
-    /* These will be set dynamically via JavaScript */
+    --spacing-margin: 1rem;
+    --spacing-padding: 1rem;
   }
 
   .dark {
@@ -67,284 +67,82 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.5% 48%;
   }
-
-  /* Theme: Netflix */
-  .theme-netflix {
-    --background: 220 13% 13% !important;
-    --foreground: 0 0% 100% !important;
-    --card: 220 13% 18% !important;
-    --card-foreground: 0 0% 100% !important;
-    --primary: 0 100% 50% !important;
-    --primary-foreground: 0 0% 100% !important;
-    --secondary: 220 13% 23% !important;
-    --secondary-foreground: 0 0% 100% !important;
-    --muted: 220 13% 23% !important;
-    --muted-foreground: 0 0% 70% !important;
-    --accent: 0 100% 50% !important;
-    --accent-foreground: 0 0% 100% !important;
-    --border: 220 13% 23% !important;
-    --input: 220 13% 23% !important;
-  }
-
-  /* Theme: YouTube */
-  .theme-youtube {
-    --background: 0 0% 100% !important;
-    --foreground: 0 0% 0% !important;
-    --card: 0 0% 98% !important;
-    --card-foreground: 0 0% 0% !important;
-    --primary: 0 100% 50% !important;
-    --primary-foreground: 0 0% 100% !important;
-    --secondary: 0 0% 95% !important;
-    --secondary-foreground: 0 0% 0% !important;
-    --muted: 0 0% 95% !important;
-    --muted-foreground: 0 0% 40% !important;
-    --accent: 0 100% 50% !important;
-    --accent-foreground: 0 0% 100% !important;
-    --border: 0 0% 90% !important;
-    --input: 0 0% 90% !important;
-  }
-
-  /* Theme: Spotify */
-  .theme-spotify {
-    --background: 160 100% 10% !important;
-    --foreground: 0 0% 100% !important;
-    --card: 160 100% 14% !important;
-    --card-foreground: 0 0% 100% !important;
-    --primary: 120 100% 50% !important;
-    --primary-foreground: 0 0% 0% !important;
-    --secondary: 160 100% 20% !important;
-    --secondary-foreground: 0 0% 100% !important;
-    --muted: 160 100% 20% !important;
-    --muted-foreground: 0 0% 70% !important;
-    --accent: 120 100% 50% !important;
-    --accent-foreground: 0 0% 0% !important;
-    --border: 160 100% 20% !important;
-    --input: 160 100% 20% !important;
-  }
-
-  /* Theme: Snapchat - Fixed */
-  .theme-snapchat {
-    --background: 60 100% 95% !important;
-    --foreground: 0 0% 0% !important;
-    --card: 60 100% 98% !important;
-    --card-foreground: 0 0% 0% !important;
-    --primary: 60 100% 50% !important;
-    --primary-foreground: 0 0% 0% !important;
-    --secondary: 0 0% 0% !important;
-    --secondary-foreground: 60 100% 50% !important;
-    --muted: 60 100% 90% !important;
-    --muted-foreground: 0 0% 40% !important;
-    --accent: 0 0% 0% !important;
-    --accent-foreground: 60 100% 50% !important;
-    --border: 60 100% 85% !important;
-    --input: 60 100% 85% !important;
-  }
-
-  /* Theme: Steam */
-  .theme-steam {
-    --background: 210 100% 10% !important;
-    --foreground: 0 0% 100% !important;
-    --card: 210 100% 15% !important;
-    --card-foreground: 0 0% 100% !important;
-    --primary: 200 100% 50% !important;
-    --primary-foreground: 0 0% 100% !important;
-    --secondary: 210 100% 20% !important;
-    --secondary-foreground: 0 0% 100% !important;
-    --muted: 210 100% 20% !important;
-    --muted-foreground: 0 0% 70% !important;
-    --accent: 200 100% 50% !important;
-    --accent-foreground: 0 0% 100% !important;
-    --border: 210 100% 20% !important;
-    --input: 210 100% 20% !important;
-  }
-
-  /* Theme: Uber */
-  .theme-uber {
-    --background: 0 0% 0% !important;
-    --foreground: 0 0% 100% !important;
-    --card: 0 0% 10% !important;
-    --card-foreground: 0 0% 100% !important;
-    --primary: 0 0% 100% !important;
-    --primary-foreground: 0 0% 0% !important;
-    --secondary: 0 0% 15% !important;
-    --secondary-foreground: 0 0% 100% !important;
-    --muted: 0 0% 15% !important;
-    --muted-foreground: 0 0% 70% !important;
-    --accent: 0 0% 100% !important;
-    --accent-foreground: 0 0% 0% !important;
-    --border: 0 0% 15% !important;
-    --input: 0 0% 15% !important;
-  }
-
-  /* Theme: TikTok */
-  .theme-tiktok {
-    --background: 0 0% 0% !important;
-    --foreground: 0 0% 100% !important;
-    --card: 0 0% 10% !important;
-    --card-foreground: 0 0% 100% !important;
-    --primary: 326 100% 60% !important;
-    --primary-foreground: 0 0% 100% !important;
-    --secondary: 196 100% 50% !important;
-    --secondary-foreground: 0 0% 100% !important;
-    --muted: 0 0% 15% !important;
-    --muted-foreground: 0 0% 70% !important;
-    --accent: 196 100% 50% !important;
-    --accent-foreground: 0 0% 100% !important;
-    --border: 0 0% 15% !important;
-    --input: 0 0% 15% !important;
-  }
-
-  /* Theme: Beach */
-  .theme-beach {
-    --background: 200 100% 90% !important;
-    --foreground: 25 100% 25% !important;
-    --card: 200 100% 95% !important;
-    --card-foreground: 25 100% 25% !important;
-    --primary: 200 100% 45% !important;
-    --primary-foreground: 0 0% 100% !important;
-    --secondary: 40 100% 80% !important;
-    --secondary-foreground: 25 100% 25% !important;
-    --muted: 200 100% 85% !important;
-    --muted-foreground: 25 100% 40% !important;
-    --accent: 25 100% 60% !important;
-    --accent-foreground: 0 0% 100% !important;
-    --border: 200 100% 80% !important;
-    --input: 200 100% 80% !important;
-  }
-
-  /* Theme: Mountain */
-  .theme-mountain {
-    --background: 210 50% 95% !important;
-    --foreground: 210 50% 10% !important;
-    --card: 210 50% 98% !important;
-    --card-foreground: 210 50% 10% !important;
-    --primary: 210 50% 40% !important;
-    --primary-foreground: 0 0% 100% !important;
-    --secondary: 210 30% 70% !important;
-    --secondary-foreground: 210 50% 10% !important;
-    --muted: 210 50% 90% !important;
-    --muted-foreground: 210 50% 40% !important;
-    --accent: 210 50% 60% !important;
-    --accent-foreground: 0 0% 100% !important;
-    --border: 210 50% 85% !important;
-    --input: 210 50% 85% !important;
-  }
-
-  /* Theme: Rainforest */
-  .theme-rainforest {
-    --background: 120 30% 95% !important;
-    --foreground: 120 50% 10% !important;
-    --card: 120 30% 98% !important;
-    --card-foreground: 120 50% 10% !important;
-    --primary: 120 50% 30% !important;
-    --primary-foreground: 0 0% 100% !important;
-    --secondary: 80 70% 60% !important;
-    --secondary-foreground: 120 50% 10% !important;
-    --muted: 120 30% 90% !important;
-    --muted-foreground: 120 50% 40% !important;
-    --accent: 40 100% 50% !important;
-    --accent-foreground: 0 0% 100% !important;
-    --border: 120 30% 85% !important;
-    --input: 120 30% 85% !important;
-  }
-
-  .theme-custom {
-    /* Custom theme uses the default light/dark mode variables but can be overridden with custom colors */
-    /* These will be set dynamically via JavaScript */
-  }
 }
 
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-family: inherit;
+    transition: all 0.3s ease;
+  }
+
+  /* Apply spacing variables */
+  .container {
+    margin-left: var(--spacing-margin);
+    margin-right: var(--spacing-margin);
+    padding-left: var(--spacing-padding);
+    padding-right: var(--spacing-padding);
+  }
+
+  section {
+    margin-top: var(--spacing-margin);
+    margin-bottom: var(--spacing-margin);
+    padding-top: var(--spacing-padding);
+    padding-bottom: var(--spacing-padding);
   }
 }
 
 /* Font families */
 .font-inter {
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", sans-serif !important;
 }
-
 .font-roboto {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif !important;
 }
-
 .font-poppins {
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif !important;
 }
-
 .font-openSans {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif !important;
 }
-
 .font-lato {
-  font-family: "Lato", sans-serif;
+  font-family: "Lato", sans-serif !important;
 }
 
-@layer utilities {
-  /* Additional spacing utilities to ensure all combinations are available */
-  .m-2 {
-    margin: 0.5rem;
-  }
-  .m-4 {
-    margin: 1rem;
-  }
-  .m-6 {
-    margin: 1.5rem;
-  }
-  .m-8 {
-    margin: 2rem;
-  }
+/* Font sizes */
+.text-sm {
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+}
+.text-base {
+  font-size: 1rem !important;
+  line-height: 1.5rem !important;
+}
+.text-lg {
+  font-size: 1.125rem !important;
+  line-height: 1.75rem !important;
+}
+.text-xl {
+  font-size: 1.25rem !important;
+  line-height: 1.75rem !important;
+}
 
-  .p-2 {
-    padding: 0.5rem;
-  }
-  .p-4 {
-    padding: 1rem;
-  }
-  .p-6 {
-    padding: 1.5rem;
-  }
-  .p-8 {
-    padding: 2rem;
-  }
-
-  .py-2 {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-  }
-  .py-4 {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-  .py-6 {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-  }
-  .py-8 {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-
-  .px-2 {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-  .px-4 {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  .px-6 {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-  .px-8 {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
+/* Ensure theme colors are applied */
+.bg-background {
+  background-color: hsl(var(--background)) !important;
+}
+.bg-muted {
+  background-color: hsl(var(--muted)) !important;
+}
+.text-foreground {
+  color: hsl(var(--foreground)) !important;
+}
+.text-muted-foreground {
+  color: hsl(var(--muted-foreground)) !important;
 }
 
 /* Edit mode styles */
@@ -371,8 +169,8 @@
   outline-offset: 2px;
 }
 
-/* Force theme application for production */
-:root[class*="theme-"] {
+/* Force theme application for both light and dark modes */
+html[class*="theme-"] {
   --forced-theme-applied: true;
 }
 
@@ -381,65 +179,138 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Ensure theme variables are applied with higher specificity */
-:root.dark[class*="theme-"],
-:root:not(.dark)[class*="theme-"] {
-  color-scheme: light dark;
-}
-
-/* Add this to the end of the file to ensure theme styles are applied with higher specificity */
-
-/* Force theme application */
-html[class*="theme-"] body,
-body[class*="theme-"] {
+/* Force theme application with higher specificity */
+html[class*="theme-"] body {
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Ensure theme variables are applied with higher specificity */
-:root[class*="theme-"],
-html[class*="theme-"] {
-  color-scheme: light dark;
-}
-
 /* Direct background color application for sections */
-section {
+html[class*="theme-"] section {
   background-color: hsl(var(--background)) !important;
 }
 
-section[id="experience"],
-section[id="skills"],
-section[id="contact"] {
+html[class*="theme-"] section[id="experience"],
+html[class*="theme-"] section[id="skills"],
+html[class*="theme-"] section[id="contact"] {
   background-color: hsl(var(--muted)) !important;
 }
 
-/* Force background colors for specific elements */
-.bg-background {
+/* Force background colors for specific elements with theme classes */
+html[class*="theme-"] .bg-background {
   background-color: hsl(var(--background)) !important;
 }
 
-.bg-muted {
+html[class*="theme-"] .bg-muted {
   background-color: hsl(var(--muted)) !important;
 }
 
-/* Override any conflicting styles */
-[class*="theme-"] .bg-slate-50 {
-  background-color: hsl(var(--muted)) !important;
-}
-
-[class*="theme-"] .bg-white {
+/* Override Tailwind's default background classes when themes are active */
+html[class*="theme-"] .bg-slate-50,
+html[class*="theme-"] .bg-white {
   background-color: hsl(var(--background)) !important;
 }
 
-[class*="theme-"] .dark\:bg-slate-950 {
+html[class*="theme-"] .dark\:bg-slate-950,
+html[class*="theme-"] .dark\:bg-slate-900 {
   background-color: hsl(var(--background)) !important;
 }
 
-[class*="theme-"] .dark\:bg-slate-900 {
-  background-color: hsl(var(--muted)) !important;
+/* Ensure cards and other components use theme colors */
+html[class*="theme-"] .bg-card {
+  background-color: hsl(var(--card)) !important;
 }
 
-/* Ensure the theme is applied to all elements */
-html[class*="theme-"] *,
-body[class*="theme-"] * {
+html[class*="theme-"] .text-card-foreground {
+  color: hsl(var(--card-foreground)) !important;
+}
+
+/* Force primary and secondary colors */
+html[class*="theme-"] .bg-primary {
+  background-color: hsl(var(--primary)) !important;
+}
+
+html[class*="theme-"] .text-primary {
+  color: hsl(var(--primary)) !important;
+}
+
+html[class*="theme-"] .bg-secondary {
+  background-color: hsl(var(--secondary)) !important;
+}
+
+html[class*="theme-"] .text-secondary {
+  color: hsl(var(--secondary)) !important;
+}
+
+/* Ensure header and footer use theme colors */
+html[class*="theme-"] header {
+  background-color: hsl(var(--background) / 0.8) !important;
+}
+
+html[class*="theme-"] footer {
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Force theme application to all child elements */
+html[class*="theme-"] * {
   --theme-applied: true;
+}
+
+/* Ensure proper text colors for all themes */
+html[class*="theme-"] .text-muted-foreground {
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+html[class*="theme-"] .text-foreground {
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Ensure buttons and interactive elements use theme colors */
+html[class*="theme-"] .bg-primary {
+  background-color: hsl(var(--primary)) !important;
+}
+
+html[class*="theme-"] .text-primary-foreground {
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+html[class*="theme-"] .bg-secondary {
+  background-color: hsl(var(--secondary)) !important;
+}
+
+html[class*="theme-"] .text-secondary-foreground {
+  color: hsl(var(--secondary-foreground)) !important;
+}
+
+/* Ensure borders use theme colors */
+html[class*="theme-"] .border {
+  border-color: hsl(var(--border)) !important;
+}
+
+html[class*="theme-"] .border-border {
+  border-color: hsl(var(--border)) !important;
+}
+
+/* Ensure inputs use theme colors */
+html[class*="theme-"] .bg-input {
+  background-color: hsl(var(--input)) !important;
+}
+
+/* Force theme colors on all elements that should inherit them */
+html[class*="theme-"] .bg-popover {
+  background-color: hsl(var(--popover)) !important;
+}
+
+html[class*="theme-"] .text-popover-foreground {
+  color: hsl(var(--popover-foreground)) !important;
+}
+
+html[class*="theme-"] .bg-accent {
+  background-color: hsl(var(--accent)) !important;
+}
+
+html[class*="theme-"] .text-accent-foreground {
+  color: hsl(var(--accent-foreground)) !important;
 }
