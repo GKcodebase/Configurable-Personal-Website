@@ -24,3 +24,6 @@ export const useMobile = () => {
 
   return isMobile
 }
+
+// Named export expected elsewhere in the codebase
+export const useIsMobile = useMobile
