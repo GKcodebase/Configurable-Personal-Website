@@ -24,3 +24,6 @@ export const useMobile = () => {
 
   return isMobile
 }
+
+// Alias so callers can import { useIsMobile } from "hooks/use-mobile"
+export const useIsMobile = useMobile
